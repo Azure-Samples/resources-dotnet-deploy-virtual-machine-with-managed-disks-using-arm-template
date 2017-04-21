@@ -2,9 +2,9 @@
 // Licensed under the MIT License. See License.txt in the project root for license information.
 
 using Microsoft.Azure.Management.Fluent;
-using Microsoft.Azure.Management.Resource.Fluent;
-using Microsoft.Azure.Management.Resource.Fluent.Core;
-using Microsoft.Azure.Management.Resource.Fluent.Models;
+using Microsoft.Azure.Management.ResourceManager.Fluent;
+using Microsoft.Azure.Management.ResourceManager.Fluent.Core;
+using Microsoft.Azure.Management.ResourceManager.Fluent.Models;
 using Microsoft.Azure.Management.Samples.Common;
 using Newtonsoft.Json.Linq;
 using System;
@@ -24,7 +24,7 @@ namespace DeployVirtualMachineUsingARMTemplate
 
             try
             {
-                var templateJson = GetTemplate();
+                var templateJson = Utilities.GetArmTemplate("ArmTemplateVM.json");
 
                 //=============================================================
                 // Create resource group.
@@ -52,15 +52,15 @@ namespace DeployVirtualMachineUsingARMTemplate
 
                 Utilities.Log("Started a deployment for an Azure Virtual Machine with managed disks: " + deploymentName);
 
-                var deployment = azure.Deployments.GetByGroup(rgName, deploymentName);
+                var deployment = azure.Deployments.GetByResourceGroup(rgName, deploymentName);
                 Utilities.Log("Current deployment status : " + deployment.ProvisioningState);
 
                 while (!(StringComparer.OrdinalIgnoreCase.Equals(deployment.ProvisioningState, "Succeeded") ||
                         StringComparer.OrdinalIgnoreCase.Equals(deployment.ProvisioningState, "Failed") ||
                         StringComparer.OrdinalIgnoreCase.Equals(deployment.ProvisioningState, "Cancelled")))
                 {
-                    SdkContext.DelayProvider.Delay(10000, CancellationToken.None).Wait();
-                    deployment = azure.Deployments.GetByGroup(rgName, deploymentName);
+                    SdkContext.DelayProvider.Delay(10000);
+                    deployment = azure.Deployments.GetByResourceGroup(rgName, deploymentName);
                     Utilities.Log("Current deployment status : " + deployment.ProvisioningState);
                 }
             }
@@ -93,7 +93,7 @@ namespace DeployVirtualMachineUsingARMTemplate
 
                 var azure = Azure
                     .Configure()
-                    .WithLogLevel(HttpLoggingDelegatingHandler.Level.BASIC)
+                    .WithLogLevel(HttpLoggingDelegatingHandler.Level.Basic)
                     .Authenticate(credentials)
                     .WithDefaultSubscription();
 
@@ -105,17 +105,5 @@ namespace DeployVirtualMachineUsingARMTemplate
             }
         }
 
-        private static string GetTemplate()
-        {
-            var adminUsername = "tirekicker";
-            var adminPassword = "12NewPA$$w0rd!";
-            var armTemplateString = System.IO.File.ReadAllText(@".\ARMTemplate\TemplateValue.json");
-
-            var parsedTemplate = JObject.Parse(armTemplateString);
-            parsedTemplate.SelectToken("parameters.adminUsername")["defaultValue"] = adminUsername;
-            parsedTemplate.SelectToken("parameters.adminPassword")["defaultValue"] = adminPassword;
-
-            return parsedTemplate.ToString();
-        }
     }
 }

@@ -1,7 +1,7 @@
 ---
 services: Resources
 platforms: .Net
-author: anuchandy
+author: anudeepsharma
 ---
 
 #Getting Started with Resources - Deploy Virtual Machine Using A R M Template - in .Net #
