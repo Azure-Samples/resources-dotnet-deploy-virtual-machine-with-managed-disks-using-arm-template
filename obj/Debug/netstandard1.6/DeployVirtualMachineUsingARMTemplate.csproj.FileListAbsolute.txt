@@ -1,0 +1,2 @@
+C:\Sources\dotnet-samples\resources-dotnet-deploy-virtual-machine-with-managed-disks-using-arm-template\bin\Debug\netstandard1.6\DeployVirtualMachineUsingARMTemplate.deps.json
+C:\Sources\dotnet-samples\resources-dotnet-deploy-virtual-machine-with-managed-disks-using-arm-template\obj\Debug\netstandard1.6\DeployVirtualMachineUsingARMTemplate.csproj.CoreCompileInputs.cache
