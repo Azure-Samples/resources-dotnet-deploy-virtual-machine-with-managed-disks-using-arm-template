@@ -1,7 +1,7 @@
 ---
 services: Resource-Manager
 platforms: dotnet
-author: anuchandy
+author: yaohaizh
 ---
 
 # Getting started with deploying a Virtual Machine with managed disks using an ARM Template in C# #
@@ -13,7 +13,7 @@ author: anuchandy
 
 To run this sample:
 
-Set the environment variable `AZURE_AUTH_LOCATION` with the full path for an auth file. See [how to create an auth file](https://github.com/Azure/azure-libraries-for-java/blob/master/AUTH.md).
+Set the environment variable `AZURE_AUTH_LOCATION` with the full path for an auth file. See [how to create an auth file](https://github.com/Azure/azure-libraries-for-net/blob/master/AUTH.md).
 
     git clone https://github.com/Azure-Samples/resources-dotnet-deploy-virtual-machine-with-managed-disks-using-arm-template.git
 
