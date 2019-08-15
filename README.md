@@ -4,14 +4,14 @@ languages:
 - csharp
 products:
 - azure
-services: Resource-Manager
-platforms: dotnet
-author: yaohaizh
+extensions:
+- services: Resource-Manager
+- platforms: dotnet
 ---
 
 # Getting started with deploying a Virtual Machine with managed disks using an ARM Template in C# #
 
-          Azure Resource sample for deploying virtual machine with managed disk using an ARM template.
+ Azure Resource sample for deploying virtual machine with managed disk using an ARM template.
 
 
 ## Running this Sample ##
