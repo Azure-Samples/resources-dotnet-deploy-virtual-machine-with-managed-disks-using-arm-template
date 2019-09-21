@@ -7,6 +7,7 @@ products:
 extensions:
 - services: Resource-Manager
 - platforms: dotnet
+description: "Azure Resource sample for deploying virtual machine with managed disk using an ARM template."
 ---
 
 # Getting started with deploying a Virtual Machine with managed disks using an ARM Template in C# #
