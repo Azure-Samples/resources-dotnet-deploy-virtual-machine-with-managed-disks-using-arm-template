@@ -5,8 +5,8 @@ languages:
 products:
 - azure
 extensions:
-- services: Resource-Manager
-- platforms: dotnet
+  services: Resource-Manager
+  platforms: dotnet
 ---
 
 # Getting started with deploying a Virtual Machine with managed disks using an ARM Template in C# #
